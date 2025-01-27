@@ -11,7 +11,7 @@ const Slider = () => {
       {/* <div className="slider_container"> */}
         <div className="slider_item">
           <div className="slider_image">
-            <img src="https://i.ibb.co/XsdmR2c/1.png" alt="img1" />
+            <img src="/hm6.jpg" alt="img1" />
           </div>
           <div className="slider_info">
             <h1>WINTER SALE</h1>
