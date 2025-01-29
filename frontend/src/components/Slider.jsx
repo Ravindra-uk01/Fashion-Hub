@@ -9,7 +9,7 @@ const Slider = () => {
         <span className="material-icons"><ArrowLeftOutlinedIcon/></span>
       </div>
       {/* <div className="slider_container"> */}
-        <div className="slider_item">
+        {/* <div className="slider_item">
           <div className="slider_image">
             <img src="/hm6.jpg" alt="img1" />
           </div>
@@ -18,7 +18,7 @@ const Slider = () => {
             <h2>DON'T COMPROMISE ON STYLE!</h2>
             <button>SHOP NOW</button>
           </div>
-        </div>
+        </div> */}
       {/* </div> */}
       <div className="slider_arrow right">
         <span className="material-icons"><ArrowRightOutlinedIcon/></span>
