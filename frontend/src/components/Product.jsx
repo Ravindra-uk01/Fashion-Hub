@@ -6,7 +6,6 @@ import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlin
 const Product = ({product}) => {
   return (
     <div className="product">
-      <div className="product__info">
         <div className="product_behind_circle" ></div>
         <img
           src={product.img}
@@ -24,8 +23,6 @@ const Product = ({product}) => {
                 <FavoriteBorderOutlinedIcon/>
             </div>
         </div>
-         
-      </div>
     </div>
   );
 };

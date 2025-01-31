@@ -1,0 +1,44 @@
+.newsletter{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    background-color: #fcf5f5
+}
+
+.newsletter h1{
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+}
+
+.newsletter p{
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+}
+
+.inputContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.inputContainer input{
+    padding: 1rem;
+    width: 300px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 1rem;
+    border: 1px solid lightgray;
+}
+
+.inputContainer button{
+    padding: 0.6rem 1rem;
+    background-color: teal;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

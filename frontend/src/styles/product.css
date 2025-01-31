@@ -21,7 +21,7 @@
     height: 200px;
     background-color: white;
     border-radius: 50%;
-    z-index: -1;
+    z-index: 1;
 }
 
 .product__info__img{
