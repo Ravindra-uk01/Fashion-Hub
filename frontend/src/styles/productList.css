@@ -1,0 +1,23 @@
+.productList{
+    padding: 20px;
+
+}
+
+.productList h1{
+    margin-bottom: 20px;
+}
+
+.productList__filter{
+    display: flex;
+    justify-content: space-between;
+}
+
+.productList__filterLeft{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.productList__filterLeft > select{
+    padding: 0.5rem;
+}
