@@ -1,5 +1,5 @@
 .productList{
-    padding: 20px;
+    padding: 25px;
 
 }
 
@@ -20,4 +20,5 @@
 
 .productList__filterLeft > select{
     padding: 0.5rem;
+    border: 2px solid teal;
 }

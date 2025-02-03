@@ -35,17 +35,14 @@ const ProductList = () => {
                 <option>XLL</option>
               </select>
           </div>
-          <div className="productList__filterLeft mr-5">
+          <div className="productList__filterLeft mr-50">
             <h2>Sort Products:</h2>
             <select>
-                <option disabled selected>
-                  Select filter
+                <option selected>
+                  Newest
                 </option>
                 <option>Price(asc)</option>
                 <option>Price(dsc)</option>
-                <option>L</option>
-                <option>XL</option>
-                <option>XLL</option>
               </select>
           </div>
         </div>
