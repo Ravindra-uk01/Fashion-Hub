@@ -16,6 +16,7 @@ const Slider = () => {
       }
   }
 
+
   return (
     <div className="slider">
       <div className="slider_arrow left" onClick={()=>handleSlideClick("left")}>
