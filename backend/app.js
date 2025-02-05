@@ -8,8 +8,10 @@ import xss from 'xss-clean';
 import cookieParser from "cookie-parser";
 const app = express();
 
-// import userRoutes from './routes/userRoutes.js';
-// import authRoutes from './routes/authRoutes.js';
+import userRoutes from './routes/userRoutes.js';
+import authRoutes from './routes/authRoutes.js';
+import { globalErrorHandler } from "./controllers/error.controller.js";
+import AppError from "./utils/appError.js";
 // import AppError from "./utils/appError.js";
 // import {globalErrorHandler} from "./controllers/errorController.js"
 
@@ -28,7 +30,7 @@ app.use(mongoSanitize());  // it prevents from $gt sign or other technique of in
 // Data sanitization against XSS attacks
 app.use(xss())  // it prevents from malicious html code 
 
-app.use(express.static(`../textmaster_frontend/index.html`));  // for serving static files
+app.use(express.static(`../frontend/index.html`));  // for serving static files
 
 app.use(cors({ origin: process.env.FRONTEND_URL , credentials: true}));        // enable secure cross-origin requests between web applications
 app.use(helmet());      // Set security HTTP headers
@@ -44,15 +46,20 @@ const limiter = rateLimit({
     message: 'Too many requests from this IP, Please try again in an hour'
 })
 
-// routes 
-// app.use('/api/v1/users', userRoutes)
-// app.use('/api/v1/auth',limiter, authRoutes)
-
-// app.all('*', (req, res, next)=>{
-//     next(new AppError(`Can't find ${req.originalUrl} on the server!`));
+// app.use('/api', (req, res, next)=>{
+//     res.status(200).json({message: 'Hello from the middleware'});
+//     next();
 // })
 
+ 
+app.use('/api/v1/users', userRoutes)
+app.use('/api/v1/auth',limiter, authRoutes)
+
+app.all('*', (req, res, next)=>{
+    next(new AppError(`Can't find ${req.originalUrl} on the server!`));
+})
+
 //Error handlling middleware
-// app.use(globalErrorHandler);
+app.use(globalErrorHandler);
 
 export default app;
