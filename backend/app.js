@@ -12,10 +12,6 @@ import userRoutes from './routes/userRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 import { globalErrorHandler } from "./controllers/error.controller.js";
 import AppError from "./utils/appError.js";
-// import AppError from "./utils/appError.js";
-// import {globalErrorHandler} from "./controllers/errorController.js"
-
-
 
 // middleware stacks 
 
