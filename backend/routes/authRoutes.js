@@ -8,6 +8,7 @@ const router = express.Router();
 
 router.get('/getProfile', getMyProfile);
 
+// this is not working check it later
 router.post('/login', login);
 router.post('/signup', signup);
 router.post('/logout', logout);
