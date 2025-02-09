@@ -1,18 +1,21 @@
 import express from "express";
-// import {createUser, getAllUsers, getUser, deleteUser, updateProfile} from "./../controllers/user.controller.js";
+import {createCart, updateCart, deleteCart, getCart, getAllCarts} from "./../controllers/cart.controller.js";
 import { verifyToken } from "../middlewares/verifyToken.js";
 
 const router = express.Router();
-// this is yet to be completed
-// router
-//     .route('/')
-//     .get(verifyToken, getAllUsers)
-//     .post(createUser)
+router
+    .route('/')
+    .get(verifyToken, getAllCarts)
+    .post(verifyToken, createCart)
 
-// router
-//     .route('/id/:id')
-//     .get(getUser)
-//     .delete(verifyToken, deleteUser);
+router
+    .route('/id/:id')
+    .patch(verifyToken, updateCart)
+    .delete(verifyToken, deleteCart);
+
+router
+    .route('/find/:userId')
+    .get(verifyToken, getCart);
 
 
 export default router;

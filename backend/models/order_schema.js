@@ -2,10 +2,10 @@ import mongoose from 'mongoose';
 const {Schema, Types, model} = mongoose;
 
 const order_schema = new Schema({
-    user: { type: Types.ObjectId, ref: "User", required: true },
+    userId: { type: Types.ObjectId, ref: "User", required: true },
     products: [
       {
-        product: { type: Types.ObjectId, ref: "Product" },
+        productId: { type: Types.ObjectId, ref: "Product" },
         quantity: { type: Number, required: true },
       },
     ],
@@ -23,12 +23,16 @@ const order_schema = new Schema({
       enum: ["processing", "shipped", "delivered", "cancelled"],
       default: "processing",
     },
+    // shippingAddress: {
+    //   street: String,
+    //   city: String,
+    //   state: String,
+    //   zip: String,
+    //   country: String,
+    // },
     shippingAddress: {
-      street: String,
-      city: String,
-      state: String,
-      zip: String,
-      country: String,
+     type: Object,
+     required: true
     },
     
 }, {

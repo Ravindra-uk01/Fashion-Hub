@@ -128,3 +128,42 @@ export const updateProfile = catchAsync(async (req, res, next) => {
     },
   });
 });
+
+export const getUserStats = catchAsync(async(req, res, next) => {
+
+  const { _id, role } = req.user;
+
+  if (!validType(role, ["admin"])) {
+    return next(new AppError(401, "Unauthorized User"));
+  }
+
+  const currentDate = new Date();
+  const lastYear = new Date(currentDate.setFullYear(currentDate.getFullYear() - 1));
+
+  const userStats = await User.aggregate([
+    {
+      $match: {
+        createdAt : {$gte: lastYear},
+      },
+    },
+    {
+      $project: {
+        month: { $month : "$createdAt"}
+      }
+    },
+    {
+      $group: {
+        _id : "$month",
+        total : {$sum : 1}
+      }
+    },
+   
+  ])
+
+  return res.status(200).json({
+    status : "success",
+    message : "User stats fetched successfully",
+    userStats
+  })
+
+})
