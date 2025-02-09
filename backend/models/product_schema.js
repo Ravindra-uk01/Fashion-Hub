@@ -31,10 +31,10 @@ const product_schema = new Schema({
         type: Array,
     },
     size: {
-        type: String,
+        type: Array,
     },
     color: {
-        type: String,
+        type: Array,
     },
     brand: {
         type: String,
@@ -44,6 +44,10 @@ const product_schema = new Schema({
         required: [true, "Stock is required"],
         min: 0,
         default: 0
+    },
+    inStock: {
+        type: Boolean,
+        default: true
     },
     rating:{
         type: Number,
