@@ -11,11 +11,7 @@ const ProductList = () => {
 
   const {cat} = useParams();
   const [sort, setSort] = useState("newest");
-  
-  const [filters, setFilters] = useState({
-    color:"",
-    size:""
-  });
+  const [filters, setFilters] = useState({});
 
   const handleFilters = (e) => {
     const value = e.target.value;
@@ -30,18 +26,18 @@ const ProductList = () => {
       <Navbar />
       <Announcement />
       <div className="productList">
-        <h1>Dresses</h1>
+        <h1 className="capitalize" >{cat}</h1>
         <div className="productList__filter">
           <div className="productList__filterLeft">
             <h2>Filter Products:</h2>
-            <select name="color" value={filters.color} onChange={handleFilters}>
+            <select name="color"  onChange={handleFilters}>
                 <option value="" disabled > Select Color </option>
                 <option value="blue" >Blue</option>
                 <option value="black" >Black</option>
                 <option value="yellow" >Yellow</option>
                 <option value="red">Red</option>
             </select>
-            <select name="size" value={filters.size} onChange={handleFilters}>
+            <select name="size"  onChange={handleFilters}>
                 <option value="" disabled > Select Size </option>
                 <option value="S" >S</option>
                 <option value="M" >M</option>

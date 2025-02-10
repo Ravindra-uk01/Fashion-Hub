@@ -27,7 +27,8 @@ const Products = ({cat, filters, sort}) => {
   },[cat])
 
   useEffect(()=>{
-    cat && setFilteredProducts(products.filter((product)=> 
+    cat && 
+    setFilteredProducts(products.filter((product)=> 
       Object.entries(filters).every(([key,value]) =>
          product[key].includes(value)
       )
@@ -36,27 +37,19 @@ const Products = ({cat, filters, sort}) => {
 
   useEffect(()=>{
     if(sort === 'newest'){
-      setFilteredProducts((prev) => {
-        [...prev].sort((a,b) => a.createdAt - b.createdAt);
-      })
+      setFilteredProducts((prev) => 
+        [...prev].sort((a,b) => a.createdAt - b.createdAt)
+      )
     }else if(sort === 'asc'){
-      setFilteredProducts((prev) => {
-        [...prev].sort((a,b) => a.price - b.price);
-      })
+      setFilteredProducts((prev) => 
+        [...prev].sort((a,b) => a.price - b.price)
+      )
     }else{
-      setFilteredProducts((prev) => {
-        [...prev].sort((a,b) => b.price - a.price);
-      })
+      setFilteredProducts((prev) => 
+        [...prev].sort((a,b) => b.price - a.price)
+      )
     }
   },[sort])
-
-  console.log('cat is ',cat);
-  console.log('filters is ',filters);
-  console.log('sort is ',sort);
-
-  console.log( "products is here " , products);
-  console.log( "filtered products is here " , filteredProducts);
-
 
   return (
     <div className="products">
@@ -67,7 +60,7 @@ const Products = ({cat, filters, sort}) => {
                   <Product key={product.id} product={product} />
               )
           :
-            popularProducts && popularProducts.length > 0 && popularProducts.slice(0,8).map(
+            products && products.length > 0 && products.slice(0,8).map(
               (product) => 
                     <Product key={product.id} product={product} />
                 )
