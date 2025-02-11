@@ -14,6 +14,8 @@ const Product = () => {
   const {id} = useParams();
   const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
+  const [color, setColor] = useState("");
+  const [size, setSize] = useState("");
 
   useEffect(()=> {
 
@@ -41,25 +43,29 @@ const Product = () => {
     }
   }
 
+  const handleClick = () => {
+    console.log('heyy ');
+  }
+
   return (
     <>
       <Navbar />
       <Announcement />
       <div className="product_container">
         <div className="product_image">
-          <img src={product.image} alt="product" />
+          <img src={product?.image} alt="product" />
         </div>
         <div className="product_info">
-          <h1 className="product_name">{product.name}</h1>
+          <h1 className="product_name">{product?.name}</h1>
           <p className="product_description">
-            {product.description}
+            {product?.description}
           </p>
-          <p className="product_price"> ₹ {product.price}</p>
+          <p className="product_price"> ₹ {product?.price}</p>
           <div className="product_filter">
             <label>Color</label>
-            <select name="color" id="color">
+            <select name="color" id="color" onChange={(e)=> setColor(e.target.value)} >
               {
-                product.color && product.color.length> 0 && product.color.map((color) => {
+                product?.color && product?.color.length> 0 && product?.color.map((color) => {
                   return (
                     <option value={color} key={color} >{color}</option>
                   )
@@ -67,9 +73,9 @@ const Product = () => {
               }
             </select>
             <label>Size</label>
-            <select name="size" id="size">
+            <select name="size" id="size" onChange={(e)=> setSize(e.target.value)}>
               {
-                product.size && product.size.length> 0 && product.size.map((size) => {
+                product?.size && product?.size.length> 0 && product?.size.map((size) => {
                   return (
                     <option value={size} key={size} >{size}</option>
                   )
@@ -88,7 +94,7 @@ const Product = () => {
                 <AddOutlinedIcon />{" "}
               </button>
             </div>
-            <button className="product_button">ADD TO CART</button>
+            <button className="product_button" onClick={handleClick} >ADD TO CART</button>
           </div>
         </div>
       </div>
