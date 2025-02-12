@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Announcement from "../components/Announcement";
 import Newsletter from "../components/Newsletter";
@@ -8,6 +8,8 @@ import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import RemoveOutlinedIcon from "@mui/icons-material/RemoveOutlined";
 import { useParams } from "react-router-dom";
 import newRequest from "../utils/newRequest";
+import {useDispatch} from "react-redux";
+import { addProduct } from "../reducers/cartReducer";
 
 const Product = () => {
 
@@ -16,6 +18,7 @@ const Product = () => {
   const [quantity, setQuantity] = useState(1);
   const [color, setColor] = useState("");
   const [size, setSize] = useState("");
+  const dispatch = useDispatch();
 
   useEffect(()=> {
 
@@ -43,8 +46,9 @@ const Product = () => {
     }
   }
 
-  const handleClick = () => {
-    console.log('heyy ');
+  const handleClick = (e) => {
+    e.preventDefault();
+    dispatch(addProduct({ ...product, quantity, color, size }));
   }
 
   return (
