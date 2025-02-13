@@ -61,8 +61,8 @@ const Products = ({cat, filters, sort}) => {
               )
           :
             products && products.length > 0 && products.slice(0,8).map(
-              (product, idx) => 
-                    <Product key={ idx} product={product} />
+              (product) => 
+                    <Product key={product._id} product={product} />
                 )
         }
     </div>

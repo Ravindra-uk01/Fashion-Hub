@@ -55,4 +55,10 @@
     justify-content: flex-end;
     align-items: center;
     padding: 0 20px;
+    
+}
+
+.navbar_right_details{
+    text-decoration: none;
+    color: black;
 }

@@ -22,11 +22,13 @@ const Navbar = () => {
           <h1>FASHION HUB</h1>
         </div>
         <div className="navbar_right">
-          <div>REGISTER</div>
-          <div>SIGN IN</div>
+          <Link to="/register" className="navbar_right_details" ><div >REGISTER</div></Link>
+          <Link to="/login" className="navbar_right_details" ><div>SIGN IN</div></Link>
+          <Link to="/cart" >
           <Badge badgeContent={quantity} color="secondary">
             <ShoppingCartOutlinedIcon />
           </Badge>
+          </Link>
           
         </div>
       </div>

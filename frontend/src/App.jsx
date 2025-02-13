@@ -6,9 +6,21 @@ import Product from './pages/Product';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import Cart from './pages/Cart';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { getProfile } from './reducers/userReducer';
 
 function App() {
-  const user = true;
+  const {user, loggedIn} = useSelector((state)=> state.user);
+
+  const dispatch = useDispatch();
+  useEffect(()=> {
+    if(!user){
+      dispatch(getProfile);
+    }
+  },[dispatch, user])
+
+  console.log('user is ', user)
 
   return (
     <>
@@ -18,8 +30,8 @@ function App() {
           <Route path="/products/:cat" element={<ProductList />} />
           <Route path="/product/:id" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/register" element={user ? <Navigate replace to="/" /> :<Register />} />
-          <Route path="/login" element={user ? <Navigate replace to="/" /> :<Login />} />
+          <Route path="/register" element={loggedIn ? <Navigate replace to="/" /> :<Register />} />
+          <Route path="/login" element={loggedIn ? <Navigate replace to="/" /> :<Login />} />
         </Routes>
       </BrowserRouter>
     </>

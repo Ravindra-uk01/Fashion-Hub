@@ -32,7 +32,7 @@ const Cart = () => {
         <div className="cart_top">
           <button className="cart_top_first_button">CONTINUE SHOPPING</button>
           <div className="cart_top_center">
-            <span>Shopping Bag(2)</span>
+            <span>Shopping Bag({quantity})</span>
             <span>Your Wishlist(0)</span>
           </div>
           <button className="cart_top_last_button">CHECKOUT NOW</button>

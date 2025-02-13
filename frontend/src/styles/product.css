@@ -51,7 +51,7 @@
     opacity: 1;
 }
 
-.product__info__details > div{
+.product__info__detailsIcon{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -62,7 +62,7 @@
     transition: all 0.5s ease;
 }
 
-.product__info__details > div:hover{
+.product__info__detailsIcon:hover{
     background-color: #e9f5f5;
     transform: scale(1.1);
 }
