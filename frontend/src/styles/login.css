@@ -49,8 +49,14 @@
     margin-bottom: 0.5rem;
 }
 
-.login > a{
-    margin: 15px 0px;
+.login_other_links{
+     display: flex; 
+     flex-direction: column;
+     gap: 0.5rem;
+     margin-top: 10px;
+}
+
+.login_other_links > a{
     font-size: 12px;
     text-decoration: underline;
     cursor: pointer;

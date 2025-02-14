@@ -20,8 +20,10 @@ const Login = () => {
           />
           <button className="loginButton">Login</button>
         </form>
-        <Link>DO NOT YOU REMEMBER THE PASSWORD? <br/></Link>
-        <Link>CREATE A NEW ACCOUNT</Link>
+        <div className="login_other_links" >
+          <Link >DO NOT YOU REMEMBER THE PASSWORD? <br/></Link>
+          <Link>CREATE A NEW ACCOUNT</Link>
+        </div>
       </div>
     </div>
   )
