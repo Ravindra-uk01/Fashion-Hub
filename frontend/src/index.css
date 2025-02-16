@@ -1,5 +1,17 @@
 /* @import "tailwindcss"; */
 
+:root {
+  --primary-color: #13343b; 
+  --secondary-color: #21808d; 
+  /* --background-color: #e0e0dc ; #f7f1f2 */
+  --background-color: #d9d9d080; 
+  --background-color2: #ffff; 
+  --background-color3: #e0e0dc; 
+  --text-color: #686263; 
+  --text-color2: #13343b; 
+  --border-color: #d9d9d080;
+}
+
 *{
   margin: 0;
   padding: 0;
@@ -7,4 +19,20 @@
 
 .capitalize{
   text-transform: capitalize;
+}
+
+.err_msg{
+  color : red;
+  margin: 0;
+}
+
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
 }

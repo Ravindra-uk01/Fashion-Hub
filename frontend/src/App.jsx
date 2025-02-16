@@ -9,6 +9,8 @@ import Cart from './pages/Cart';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getProfile } from './reducers/userReducer';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
 
 function App() {
   const {user, loggedIn} = useSelector((state)=> state.user);
@@ -20,7 +22,7 @@ function App() {
     }
   },[dispatch, user])
 
-  console.log('user is ', user)
+  console.log('user in app.jsx ', user)
 
   return (
     <>
@@ -32,6 +34,8 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/register" element={loggedIn ? <Navigate replace to="/" /> :<Register />} />
           <Route path="/login" element={loggedIn ? <Navigate replace to="/" /> :<Login />} />
+          <Route exact path="/forgot_password" element={<ForgotPassword/>} />
+          <Route exact path="/reset_password/:token" element={<ResetPassword/>} />
         </Routes>
       </BrowserRouter>
     </>

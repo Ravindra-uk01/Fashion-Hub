@@ -28,11 +28,18 @@
 .registerForm{
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
+}
+
+.registerFormDiv{
+    flex: 1;
+    gap: 1rem;
+    min-width: 40%;
 }
 
 .registerInput{
-    flex: 1;
-    min-width: 40%;
+    width: 85%;
+    /* min-width: 40%; */
     margin: 20px 10px 0px 0px;
     padding: 10px;
 }

@@ -18,6 +18,7 @@ const toastData = {
       const response = await newRequest.post(`/auth/signup`, data); 
   
       const { status, message } = response.data;
+      console.log('response.data is ',response.data);
       if (status === "success") {
         toast.success(message, { ...toastData });
       } else {
@@ -26,7 +27,8 @@ const toastData = {
       return response.data;
     } catch (error) {
       const { status, message } = error.response.data;
-  
+      console.log('response.data is ', error.response.data);
+      
       if (status === "warning") {
         toast.warn(message, {
           ...toastData,
@@ -46,7 +48,6 @@ const toastData = {
       const { status, message } = response.data;
       if (status === "success") {
         toast.success(message, { ...toastData });
-        // navigate('/home');
       } else {
         toast.warn(message, { ...toastData });
       }
@@ -70,7 +71,7 @@ const toastData = {
     "user/getProfile",
     async() => {
       try {
-        const response = await newRequest.get('auth/getProfile') 
+        const response = await newRequest.get('auth/getProfile'); 
         return response.data;
       } catch (error) {
         console.log('System Internal Error', error)
@@ -119,5 +120,5 @@ const userSlice = new createSlice({
     }
 })
 
-// export const {} = userSlice.actions;
+export const {setProfile} = userSlice.actions;
 export default userSlice.reducer;

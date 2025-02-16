@@ -15,6 +15,10 @@ const user_schema = new Schema({
         type: String,
         trim: true
     },
+    username:{
+        type: String,
+        trim: true
+    },
     email: {
         type: String,
         unique: true,
