@@ -22,8 +22,6 @@ function App() {
     }
   },[dispatch, user])
 
-  console.log('user in app.jsx ', user)
-
   return (
     <>
       <BrowserRouter>
