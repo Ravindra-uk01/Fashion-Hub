@@ -62,13 +62,15 @@
 
 .product_details > img{
     width: 200px;
+    height: 200px;
 }
 
 .details{
-    padding: 20px;
+    padding: 30px 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    font-size: 1rem;
 }
 
 .details_color{
@@ -102,6 +104,12 @@
     flex: 1;
     padding: 20px;
     border: 2px solid rgb(235, 235, 235);
+    height: fit-content;
+}
+
+.cart_summary > h1 {
+    font-weight: 500;
+    margin-bottom: 1rem;
 }
 
 .cart_summary > div{
@@ -121,4 +129,6 @@
     color: white;
     font-weight: 600;
     cursor: pointer;
+    width: 100%;
+    margin-top: 1rem;
 }

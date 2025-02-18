@@ -6,19 +6,45 @@ import RemoveOutlinedIcon from "@mui/icons-material/RemoveOutlined";
 import "../styles/cart.css";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProduct } from "../reducers/cartReducer";
+import StripeCheckout from 'react-stripe-checkout';
+import { useEffect, useState } from "react";
+import newRequest from "../utils/newRequest";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
-  const { products, quantity, total } = useSelector((state) => state.cart);
+  const cart = useSelector((state) => state.cart);
+  const [stripeToken, setStripeToken] = useState(null);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const KEY = import.meta.env.VITE_STRIPE_KEY;
   
   const handleProductQuantity = (index, dir) => {
     dispatch(updateProduct({index, dir}))
   }
 
-  console.log("products is ", products);
-  console.log("quantity is ", quantity);
-  console.log("total is ", total);
+  const onToken = (token) => {
+    setStripeToken(token);
+  };
 
+  useEffect(()=>{
+    const makePayment = async() => {
+      try {
+        const response = await newRequest.post("/checkout/payment", {
+          tokenId: stripeToken._id,
+          amount: 500
+        } );
+        // const {status , message} = response.data;
+        navigate("/success", { state: { stripeData: response.data, products: cart } });
+
+      } catch (error) {
+        console.log('error ', error);
+      }
+    }
+
+    stripeToken &&  makePayment();
+  },[stripeToken, cart.total, navigate ])
+
+  console.log('key is ',KEY);
 
   return (
     <>
@@ -32,16 +58,16 @@ const Cart = () => {
         <div className="cart_top">
           <button className="cart_top_first_button">CONTINUE SHOPPING</button>
           <div className="cart_top_center">
-            <span>Shopping Bag({quantity})</span>
+            <span>Shopping Bag({cart.quantity})</span>
             <span>Your Wishlist(0)</span>
           </div>
           <button className="cart_top_last_button">CHECKOUT NOW</button>
         </div>
         <div className="cart_bottom">
           <div className="cart_info">
-            {products &&
-              products.length > 0 &&
-              products.map((product, idx) => {
+            {cart.products &&
+              cart.products.length > 0 &&
+              cart.products.map((product, idx) => {
                 return (
                   <div className="cart_product" key={`${product._id}-${idx}`}>
                     <div className="product_details">
@@ -76,10 +102,10 @@ const Cart = () => {
           </div>
 
           <div className="cart_summary">
-            <h2>ORDER SUMMARY</h2>
+            <h1>ORDER SUMMARY</h1>
             <div>
               <span>Subtotal</span>
-              <span>₹ {total}</span>
+              <span>₹ {cart.total}</span>
             </div>
             <div>
               <span>Estimated Shipping</span>
@@ -91,9 +117,20 @@ const Cart = () => {
             </div>
             <div className="summary_total">
               <span>Total</span>
-              <span>₹ {total}</span>
+              <span>₹ {cart.total}</span>
             </div>
-            <button className="cart_summary_button">CHECKOUT NOW</button>
+            <StripeCheckout 
+              name="Fashion Hub"
+              image="https://avatars.githubusercontent.com/u/1486366?v=4"
+              billingAddress
+              shippingAddress
+              description={`Your total is ₹${cart.total}`}
+              amount={cart.total}
+              token={onToken}
+              stripeKey={KEY}
+             >
+              <button className="cart_summary_button">CHECKOUT NOW</button>
+            </StripeCheckout>
           </div>
         </div>
       </div>
