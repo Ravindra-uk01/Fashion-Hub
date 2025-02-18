@@ -1,18 +1,21 @@
 import { useState } from "react";
 import "../styles/register.css";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registrationSchema } from "../schemas/authSchema";
 import { addUser } from "../reducers/userReducer";
 import { ToastContainer } from "react-toastify";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 const Register = () => {
   const [isFocus, setIsFocus] = useState("");
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] =
     useState(false);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -27,14 +30,16 @@ const Register = () => {
   const onSubmit = async (data, e) => {
     console.log(data);
     e.preventDefault();
-    try{
+    try {
+      setLoading(true);
       dispatch(addUser(data));
-      console.log('user added successfully. ')
-    }catch(error){
-      console.error('Failed to add user:', error);
+      setLoading(false);
+      console.log("user added successfully. ");
+    } catch (error) {
+      setLoading(false);
+      console.error("Failed to add user:", error);
     }
   };
-
 
   return (
     <div className="register_container">
@@ -42,7 +47,7 @@ const Register = () => {
       <div className="register">
         <span className="registerTitle">CREATE AN ACCOUNT</span>
         <form className="registerForm" onSubmit={handleSubmit(onSubmit)}>
-          <div className="registerFormDiv" >
+          <div className="registerFormDiv">
             <input
               type="text"
               className="registerInput"
@@ -79,33 +84,65 @@ const Register = () => {
           </div>
 
           <div className="registerFormDiv">
-            <input
-              type="password"
-              className="registerInput"
-              placeholder="Password*"
-              {...register("password")}
-            />
+            <div className="registerPasswordDiv">
+              <input
+                type={isPasswordVisible ? "text" : "password"}
+                className="registerInput"
+                placeholder="Password*"
+                {...register("password")}
+              />
+              <button
+                type="button"
+                onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+                className="toggle-password reg"
+              >
+                {isPasswordVisible ? (
+                  <VisibilityOffIcon fontSize="small" />
+                ) : (
+                  <VisibilityIcon fontSize="small" />
+                )}
+              </button>
+            </div>
             <p className="err_msg">{errors.password?.message}</p>
           </div>
 
           <div className="registerFormDiv">
-            <input
-              type="password"
-              className="registerInput"
-              placeholder="Confirm Password*"
-              {...register("confirm_password")}
-            />
+            <div className="registerPasswordDiv">
+              <input
+                type={isConfirmPasswordVisible ? "text" : "password"}
+                className="registerInput"
+                placeholder="Confirm Password*"
+                {...register("confirm_password")}
+              />
+              <button
+                type="button"
+                onClick={() =>
+                  setIsConfirmPasswordVisible(!isConfirmPasswordVisible)
+                }
+                className="toggle-password reg"
+              >
+                {isConfirmPasswordVisible ? (
+                  <VisibilityOffIcon fontSize="small" />
+                ) : (
+                  <VisibilityIcon fontSize="small" />
+                )}
+              </button>
+            </div>
             <p className="err_msg">{errors.confirm_password?.message}</p>
           </div>
           <div className="registerAggrement">
             By creating an account, I consent to the processing of my personal
             data in accordance with the <b>PRIVACY POLICY.</b>
           </div>
-          <button className="registerButton" type="submit">
+          <button className="registerButton" type="submit" disabled={loading}>
             Register
           </button>
         </form>
-        {/* <button className="registerLoginButton">Login</button> */}
+        <div className="register_links">
+          <Link to={"/login"}>
+            Already Have an Account? <br />
+          </Link>
+        </div>
       </div>
     </div>
   );

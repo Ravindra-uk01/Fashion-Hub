@@ -1,5 +1,5 @@
-import { Link, useNavigate } from "react-router-dom"
-import "../styles/login.css"
+import { Link, useNavigate } from "react-router-dom";
+import "../styles/login.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
@@ -8,13 +8,13 @@ import { loginSchema } from "../schemas/authSchema";
 import newRequest from "../utils/newRequest";
 import { toast, ToastContainer } from "react-toastify";
 import { setProfile } from "../reducers/userReducer";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 const Login = () => {
-
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   // const API = import.meta.env.VITE_API;
   const toastData = {
@@ -40,16 +40,15 @@ const Login = () => {
     try {
       setLoading(true);
       const res = await newRequest.post(`auth/login`, data);
-      const { status, message, user , token} = res.data;
+      const { status, message, user, token } = res.data;
 
       if (status === "success") {
         toast.success(message, { ...toastData });
         // localStorage.setItem("token", token);
-        dispatch(setProfile({user}));
+        dispatch(setProfile({ user }));
       } else {
         toast.warn(message, { ...toastData });
       }
-
     } catch (err) {
       const { status, message } = err.response.data;
       if (status === "warning") {
@@ -61,46 +60,57 @@ const Login = () => {
           ...toastData,
         });
       }
-    }
-    finally{
+    } finally {
       setLoading(false);
     }
   };
-
-
 
   return (
     <div className="login_container">
       <ToastContainer />
       <div className="login">
         <span className="loginTitle">SIGN IN</span>
-        <form className="loginForm" onSubmit={handleSubmit(onSubmit)} >
-
-          <input
-            type="text"
-            className="loginInput"
-            placeholder="Email*"
-            {...register("email")}
-          />
+        <form className="loginForm" onSubmit={handleSubmit(onSubmit)}>
+          <div>
+            <input
+              type="text"
+              className="loginInput"
+              placeholder="Email*"
+              {...register("email")}
+            />
             <p className="err_msg">{errors.email?.message}</p>
+          </div>
 
-          <input
-            type="password"
-            className="loginInput"
-            placeholder="Password*"
-            {...register("password")}
-          />
-            <p className="err_msg">{errors.password?.message}</p>
+          <div className="loginFormDiv">
+            <input
+              type={isPasswordVisible ? "text" : "password"}
+              className="loginInput"
+              placeholder="Password*"
+              {...register("password")}
+            />
+            <button
+              type="button"
+              onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+              className="toggle-password"
+            >
+              {isPasswordVisible ? <VisibilityOffIcon /> : <VisibilityIcon />}
+            </button>
+          </div>
+          <p className="err_msg">{errors.password?.message}</p>
 
-          <button className="loginButton" type="submit" >Login</button>
+          <button className="loginButton" type="submit" disabled={loading}>
+            Login
+          </button>
         </form>
-        <div className="login_other_links" >
-          <Link to={"/forgot_password"} >DO NOT YOU REMEMBER THE PASSWORD? <br/></Link>
-          <Link to={"/register"} >CREATE A NEW ACCOUNT</Link>
+        <div className="login_other_links">
+          <Link to={"/forgot_password"}>
+            DO NOT YOU REMEMBER THE PASSWORD? <br />
+          </Link>
+          <Link to={"/register"}>CREATE A NEW ACCOUNT</Link>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

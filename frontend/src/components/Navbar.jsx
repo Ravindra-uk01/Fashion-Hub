@@ -23,7 +23,7 @@ const Navbar = () => {
       <nav className="navbar">
         <div className="navbar_container">
           <div className="navbar_left">
-            <span className="nav_lang">EN</span>
+            {/* <span className="nav_lang">EN</span> */}
             <div className="search_container">
               <input type="text" />
               <SearchOutlinedIcon className="search_bar" />

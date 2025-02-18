@@ -35,6 +35,15 @@
     flex: 1;
     gap: 1rem;
     min-width: 40%;
+    /* position: relative; */
+}
+
+.registerPasswordDiv{
+    position: relative;
+}
+
+.reg{
+    top: 70%;
 }
 
 .registerInput{
@@ -58,5 +67,14 @@
     color: white;
     border: 1px solid;
     border-radius: 2px;
+    cursor: pointer;
+}
+
+.register_links{
+    margin-top: 10px;
+}
+
+.register_links > a{
+    text-decoration: underline;
     cursor: pointer;
 }

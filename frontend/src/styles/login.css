@@ -31,6 +31,11 @@
     flex-direction: column;
 }
 
+.loginFormDiv{
+    position: relative;
+    width: 100%;
+}
+
 .loginInput{
     width: 90%;
     margin: 10px 0;
@@ -47,6 +52,10 @@
     border-radius: 2px;
     cursor: pointer;
     margin: 0.5rem 0;
+}
+
+.loginButton:disabled{
+    background-color: grey;
 }
 
 .login_other_links{
