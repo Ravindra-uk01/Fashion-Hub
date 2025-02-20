@@ -34,6 +34,7 @@ const Cart = () => {
           amount: 500
         } );
         // const {status , message} = response.data;
+        console.log('response of payment is ', response)
         navigate("/success", { state: { stripeData: response.data, products: cart } });
 
       } catch (error) {
@@ -44,8 +45,7 @@ const Cart = () => {
     stripeToken &&  makePayment();
   },[stripeToken, cart.total, navigate ])
 
-  console.log('key is ',KEY);
-
+  console.log('stripeToken is ', stripeToken)
   return (
     <>
       <Navbar />
@@ -125,9 +125,10 @@ const Cart = () => {
               billingAddress
               shippingAddress
               description={`Your total is ₹${cart.total}`}
-              amount={cart.total}
+              amount={cart.total*100}
               token={onToken}
               stripeKey={KEY}
+              currency="INR"
              >
               <button className="cart_summary_button">CHECKOUT NOW</button>
             </StripeCheckout>
