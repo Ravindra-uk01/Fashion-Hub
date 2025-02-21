@@ -45,7 +45,7 @@ const Cart = () => {
     stripeToken &&  makePayment();
   },[stripeToken, cart.total, navigate ])
 
-  console.log('stripeToken is ', stripeToken)
+  // console.log('stripeToken is ', stripeToken)
   return (
     <>
       <Navbar />
