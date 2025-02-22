@@ -57,7 +57,6 @@ const ForgotPassword = () => {
     }
   };
 
-  console.log("email is ", email);
 
   return (
     <div className="fg_password-mainDiv">
