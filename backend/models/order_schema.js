@@ -30,7 +30,7 @@ const order_schema = new Schema({
     //   zip: String,
     //   country: String,
     // },
-    shippingAddress: {
+    address: {
      type: Object,
      required: true
     },

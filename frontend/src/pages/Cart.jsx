@@ -28,14 +28,16 @@ const Cart = () => {
 
   useEffect(()=>{
     const makePayment = async() => {
+      console.log('inside make payment');
       try {
         const response = await newRequest.post("/checkout/payment", {
-          tokenId: stripeToken._id,
-          amount: 500
+          tokenId: stripeToken.id,
+          amount: cart.total*100
         } );
         // const {status , message} = response.data;
-        console.log('response of payment is ', response)
-        navigate("/success", { state: { stripeData: response.data, products: cart } });
+        console.log('response of payment is ', response.data)
+        setStripeToken(null);
+        navigate("/success", { state: { stripeData: response.data, cart: cart } });
 
       } catch (error) {
         console.log('error ', error);
@@ -45,7 +47,8 @@ const Cart = () => {
     stripeToken &&  makePayment();
   },[stripeToken, cart.total, navigate ])
 
-  // console.log('stripeToken is ', stripeToken)
+  console.log('stripeToken is ', stripeToken)
+  console.log('key is ', KEY);
   return (
     <>
       <Navbar />

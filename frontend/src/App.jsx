@@ -11,6 +11,7 @@ import { useEffect } from 'react';
 import { getProfile } from './reducers/userReducer';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
+import Success from './pages/Success';
 
 function App() {
   const {user, loggedIn} = useSelector((state)=> state.user);
@@ -30,6 +31,7 @@ function App() {
           <Route path="/products/:cat" element={<ProductList />} />
           <Route path="/product/:id" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/success" element={<Success />} />
           <Route path="/register" element={loggedIn ? <Navigate replace to="/" /> :<Register />} />
           <Route path="/login" element={loggedIn ? <Navigate replace to="/" /> :<Login />} />
           <Route exact path="/forgot_password" element={<ForgotPassword/>} />

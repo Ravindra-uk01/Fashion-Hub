@@ -60,6 +60,7 @@ app.use('/api/v1/orders', orderRoutes)
 app.use('/api/v1/checkout', stripeRoutes);
 
 app.all('*', (req, res, next)=>{
+    console.log('req is ', req);
     next(new AppError(`Can't find ${req.originalUrl} on the server!`));
 })
 
