@@ -23,13 +23,6 @@ const order_schema = new Schema({
       enum: ["processing", "shipped", "delivered", "cancelled"],
       default: "processing",
     },
-    // shippingAddress: {
-    //   street: String,
-    //   city: String,
-    //   state: String,
-    //   zip: String,
-    //   country: String,
-    // },
     address: {
      type: Object,
      required: true

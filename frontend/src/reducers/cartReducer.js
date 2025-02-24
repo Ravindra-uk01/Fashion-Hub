@@ -38,9 +38,14 @@ const cartSlice = new createSlice({
         );
       }
     },
+    emptyCart: (state) => {
+      state.products = [];
+      state.quantity = 0;
+      state.total = 0;
+    }
   },
   extraReducers: (builder) => {},
 });
 
-export const { addProduct, updateProduct } = cartSlice.actions;
+export const { addProduct, updateProduct,emptyCart } = cartSlice.actions;
 export default cartSlice.reducer;

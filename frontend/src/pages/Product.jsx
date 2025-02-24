@@ -23,6 +23,7 @@ const Product = () => {
   useEffect(()=> {
 
     const getProduct = async() => {
+      if(!id || product) return;
       try {
         const response = await newRequest.get(`/products/id/${id}` );
 

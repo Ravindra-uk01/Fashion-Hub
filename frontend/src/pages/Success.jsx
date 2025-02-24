@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import newRequest from "../utils/newRequest";
+import { emptyCart } from "../reducers/cartReducer";
 
 const Success = () => {
   const [orderId, setOrderId] = useState(null);
   const { user } = useSelector((state) => state.user);
+  const cart = useSelector((state) => state.cart);
   const location = useLocation();
-//   const { cart, stripeData } = location.state|| {};
   const [stripeData, setStripeData] = useState(location.state?.stripeData || null);
-  const [cart, setCart] = useState(location.state?.cart || null);
-
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const createOrder = async () => {
@@ -31,12 +31,12 @@ const Success = () => {
         console.log("response of order is ", response.data);
         setOrderId(newOrder._id);
         setStripeData(null);
-        setCart(null);
+        dispatch(emptyCart());
       } catch (error) {
         console.log("error ", error);
       }
     };
-     stripeData && createOrder();
+     stripeData && cart.total && createOrder();
   }, [user, stripeData, cart]);
 
   console.log("cart is ", cart);

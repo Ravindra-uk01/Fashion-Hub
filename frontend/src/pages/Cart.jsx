@@ -37,7 +37,7 @@ const Cart = () => {
         // const {status , message} = response.data;
         console.log('response of payment is ', response.data)
         setStripeToken(null);
-        navigate("/success", { state: { stripeData: response.data, cart: cart } });
+        navigate("/success", { state: { stripeData: response.data } });
 
       } catch (error) {
         console.log('error ', error);
@@ -47,8 +47,7 @@ const Cart = () => {
     stripeToken &&  makePayment();
   },[stripeToken, cart.total, navigate ])
 
-  console.log('stripeToken is ', stripeToken)
-  console.log('key is ', KEY);
+
   return (
     <>
       <Navbar />
