@@ -1,0 +1,12 @@
+.topbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    height: 60px;
+    padding: 0 20px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    width: 100%;
+    position: fixed;
+}
