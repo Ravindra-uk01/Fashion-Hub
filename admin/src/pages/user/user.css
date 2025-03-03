@@ -1,0 +1,89 @@
+.user{
+    flex: 4;
+}
+
+.userTitleContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.userTitle{
+    fontSize: 24px;
+}
+
+.userAddButton{
+    width: 80px;
+    border: none;
+    padding: 10px;
+    background-color: teal;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.userContainer{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.userShow{
+    flex: 3;
+}
+
+
+
+.userShowTop{
+    display: flex;
+    align-items: center;
+}
+
+.userShowImg{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+}
+
+.userShowTopTitle{
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.userShowTopButton{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.userShowTopRight{
+    display: flex;
+    gap: 10px;
+}
+
+.userShowInfo{
+    padding: 20px;
+}
+
+.userShowInfoTitle{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.userShowInfoItem{
+    margin: 20px 0;
+}
+
+.userUpdate{
+    flex: 5;
+}
+
+.userUpdateImg{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
