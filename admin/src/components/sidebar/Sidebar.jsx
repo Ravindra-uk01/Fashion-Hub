@@ -6,6 +6,9 @@ import { LineStyle , Timeline , TrendingUp  , PermIdentity, BarChart, Storefront
 
 
 const Sidebar = () => {
+
+
+  console.log('user is ', );
   return (
     <div  className="sidebar">
       <div className="sidebarWrapper">
