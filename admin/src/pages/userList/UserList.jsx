@@ -4,6 +4,7 @@ import "./userList.css"
 import { DataGrid } from '@mui/x-data-grid';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import AddIcon from '@mui/icons-material/Add';
 import { Link } from "react-router-dom";
 
 const UserList = () => {
@@ -64,6 +65,10 @@ const UserList = () => {
 
   return (
     <div className='userList' >
+      <div className="userListTitleContainer">
+        <h1 className="userListTitle">Users List</h1>
+        <button className="userListAddButton"> <AddIcon/> Add New</button>
+      </div>
       <DataGrid
         rows={data}
         columns={columns}
