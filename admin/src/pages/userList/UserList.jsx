@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { userRows } from "../../dummyData";
-import "./userList.css"
-import { DataGrid } from '@mui/x-data-grid';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import AddIcon from '@mui/icons-material/Add';
+import "./userList.css";
+import { DataGrid } from "@mui/x-data-grid";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import AddIcon from "@mui/icons-material/Add";
 import { Link } from "react-router-dom";
 
 const UserList = () => {
@@ -14,9 +14,8 @@ const UserList = () => {
     setData(data.filter((item) => item.id !== id));
   };
 
-
   const columns = [
-    { field: 'id', headerName: 'ID', width: 90 },
+    { field: "id", headerName: "ID", width: 90 },
     {
       field: "user",
       headerName: "User",
@@ -48,26 +47,33 @@ const UserList = () => {
       renderCell: (params) => {
         return (
           <>
-            <Link to={"/user/" + params.row.id} >
-            <button className="userListEdit">
-              <EditIcon className="userListIcon" />
-            </button>
+            <Link to={"/user/" + params.row.id}>
+              <button className="userListEdit">
+                <EditIcon className="userListIcon" />
+              </button>
             </Link>
-            <button className="userListDelete" onClick={()=>handleDelete(params.row.id)}>
+            <button
+              className="userListDelete"
+              onClick={() => handleDelete(params.row.id)}
+            >
               <DeleteOutlineIcon className="userListIcon" />
             </button>
           </>
         );
       },
-    }
-
+    },
   ];
 
   return (
-    <div className='userList' >
+    <div className="userList">
       <div className="userListTitleContainer">
         <h1 className="userListTitle">Users List</h1>
-        <button className="userListAddButton"> <AddIcon/> Add New</button>
+        <Link to="/new_user">
+          <button className="userListAddButton">
+            {" "}
+            <AddIcon /> Add New
+          </button>
+        </Link>
       </div>
       <DataGrid
         rows={data}
@@ -76,10 +82,9 @@ const UserList = () => {
         rowsPerPageOptions={[1]}
         // checkboxSelection
         disableSelectionOnClick
-    
       />
     </div>
-  )
-}
+  );
+};
 
-export default UserList
+export default UserList;
