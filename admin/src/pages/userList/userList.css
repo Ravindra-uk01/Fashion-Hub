@@ -10,6 +10,9 @@
     margin: 0 0 20px 0;
   }
 
+  .userListTitleContainer > a{
+    text-decoration: none;
+  }
 
   .userListAddButton {
     font-size: 16px;
