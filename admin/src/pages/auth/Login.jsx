@@ -1,15 +1,15 @@
 import { Link, useNavigate } from "react-router-dom";
-import "../styles/login.css";
+import "./login.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { loginSchema } from "../schemas/authSchema";
 import newRequest from "../utils/newRequest";
 import { toast, ToastContainer } from "react-toastify";
 import { setProfile } from "../reducers/userReducer";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { loginSchema } from "../../schemas/authSchema";
 
 const Login = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);

@@ -1,0 +1,80 @@
+.register_container{
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url("https://images.pexels.com/photos/6984661/pexels-photo-6984661.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
+      center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.register{
+    width: 40%;
+    padding: 20px;
+    background-color: white;
+}
+
+.registerTitle{
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: 300;
+}
+
+.registerForm{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.registerFormDiv{
+    flex: 1;
+    gap: 1rem;
+    min-width: 40%;
+    /* position: relative; */
+}
+
+.registerPasswordDiv{
+    position: relative;
+}
+
+.reg{
+    top: 70%;
+}
+
+.registerInput{
+    width: 85%;
+    /* min-width: 40%; */
+    margin: 20px 10px 0px 0px;
+    padding: 10px;
+}
+
+.registerAggrement{
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 20px 0;
+}
+
+.registerButton{
+    width: 40%;
+    padding: 10px;
+    background-color: teal;
+    border: none;
+    color: white;
+    border: 1px solid;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.register_links{
+    margin-top: 10px;
+}
+
+.register_links > a{
+    text-decoration: underline;
+    cursor: pointer;
+}
