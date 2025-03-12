@@ -4,12 +4,13 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import newRequest from "../utils/newRequest";
 import { toast, ToastContainer } from "react-toastify";
-import { setProfile } from "../reducers/userReducer";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { loginSchema } from "../../schemas/authSchema";
+import newRequest from "../../utils/newRequest";
+import { setProfile } from "../../reducers/userReducer";
+// import { setProfile } from "../reducers/userReducer";
 
 const Login = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -44,7 +45,6 @@ const Login = () => {
 
       if (status === "success") {
         toast.success(message, { ...toastData });
-        // localStorage.setItem("token", token);
         dispatch(setProfile({ user }));
       } else {
         toast.warn(message, { ...toastData });

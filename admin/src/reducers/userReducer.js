@@ -82,6 +82,7 @@ const toastData = {
 
 const initialState = {
     loggedIn: false,
+    isAdmin: false,
     user: {},
 }
 
@@ -93,6 +94,7 @@ const userSlice = new createSlice({
             const {user} = action.payload;
             state.user = user;
             state.loggedIn = true;
+            state.isAdmin = user.role === "admin" ? true : false;
           },
     },
     extraReducers: (builder) => {
