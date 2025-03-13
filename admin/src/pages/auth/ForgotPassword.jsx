@@ -57,7 +57,7 @@ const ForgotPassword = () => {
     }
   };
 
-
+  console.log('message is ', message);
   return (
     <div className="fg_password-mainDiv">
       <ToastContainer />

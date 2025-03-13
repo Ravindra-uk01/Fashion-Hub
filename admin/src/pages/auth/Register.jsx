@@ -39,6 +39,8 @@ const Register = () => {
     }
   };
 
+  console.log( "errors is ", errors);
+
   return (
     <div className="register_container">
       <ToastContainer />
