@@ -10,12 +10,14 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { loginSchema } from "../../schemas/authSchema";
 import newRequest from "../../utils/newRequest";
 import { setProfile } from "../../reducers/userReducer";
+import Loader from "../../components/ui/Loader";
 // import { setProfile } from "../reducers/userReducer";
 
 const Login = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   // const API = import.meta.env.VITE_API;
   const toastData = {
@@ -46,6 +48,9 @@ const Login = () => {
       if (status === "success") {
         toast.success(message, { ...toastData });
         dispatch(setProfile({ user }));
+        window.setTimeout(() => {
+          navigate("/");
+        }, 1500);
       } else {
         toast.warn(message, { ...toastData });
       }
@@ -99,7 +104,7 @@ const Login = () => {
           <p className="err_msg">{errors.password?.message}</p>
 
           <button className="loginButton" type="submit" disabled={loading}>
-            Login
+            { loading ? <Loader/> :"Login"} 
           </button>
         </form>
         <div className="login_other_links">

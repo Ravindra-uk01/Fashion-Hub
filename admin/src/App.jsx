@@ -1,5 +1,11 @@
 import "./App.css";
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  Navigate,
+  Outlet,
+} from "react-router-dom";
 import Home from "./pages/home/Home";
 import UserList from "./pages/userList/UserList";
 import ProductList from "./pages/productList/ProductList";
@@ -15,10 +21,24 @@ import ForgotPassword from "./pages/auth/ForgotPassword";
 import ResetPassword from "./pages/auth/ResetPassword";
 
 function App() {
-
   const loggedIn = false;
   const isAdmin = false;
-  const isValid = loggedIn && isAdmin;
+  // const isValid = loggedIn && isAdmin;
+  const isValid = true;
+
+  const PrivateRoute = ({ children }) => {
+    return isValid ? children : <Navigate replace to="/login" />;
+  };
+
+  const DashboardLayout = () => (
+    <div>
+      <Topbar />
+      <div className="container">
+        <Sidebar />
+        <Outlet />
+      </div>
+    </div>
+  );
 
   return (
     <>
@@ -26,35 +46,34 @@ function App() {
         <Routes>
           {/* Public Routes */}
           <Route path="/login" element={<Login />} />
-          <Route path="/register" element={loggedIn ? <Navigate replace to="/" /> :<Register />} />
-          <Route exact path="/forgot_password" element={<ForgotPassword/>} />
-          <Route exact path="/reset_password/:token" element={<ResetPassword/>} /> 
+          <Route
+            path="/register"
+            element={loggedIn ? <Navigate replace to="/" /> : <Register />}
+          />
+          <Route exact path="/forgot_password" element={<ForgotPassword />} />
+          <Route
+            exact
+            path="/reset_password/:token"
+            element={<ResetPassword />}
+          />
 
           {/* Private Routes */}
           <Route
             path="/"
             element={
-              isValid ? (
-                <div>
-                  <Topbar />
-                  <div className="container">
-                    <Sidebar />
-                    <Routes>
-                      <Route path="/" element={<Home />} />
-                      <Route path="/users" element={<UserList />} />
-                      <Route path="/user/:userId" element={<User />} />
-                      <Route path="/new_user" element={<NewUser />} />
-                      <Route path="/products" element={<ProductList />} />
-                      <Route path="/product/:productId" element={<Product />} />
-                      <Route path="/new_product" element={<NewProduct />} />
-                    </Routes>
-                  </div>
-                </div>
-              ) : (
-                <Navigate replace to="/login" />
-              )
+              <PrivateRoute>
+                <DashboardLayout />
+              </PrivateRoute>
             }
-          />
+          >
+            <Route index element={<Home />} />
+            <Route path="users" element={<UserList />} />
+            <Route path="user/:userId" element={<User />} />
+            <Route path="new_user" element={<NewUser />} />
+            <Route path="products" element={<ProductList />} />
+            <Route path="product/:productId" element={<Product />} />
+            <Route path="new_product" element={<NewProduct />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </>

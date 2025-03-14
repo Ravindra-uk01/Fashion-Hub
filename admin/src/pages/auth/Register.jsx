@@ -1,14 +1,15 @@
 import { useState } from "react";
-import "../styles/register.css";
+import "./register.css";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { registrationSchema } from "../schemas/authSchema";
-import { addUser } from "../reducers/userReducer";
 import { ToastContainer } from "react-toastify";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { registrationSchema } from "../../schemas/authSchema";
+import { addUser } from "../../reducers/userReducer";
+import Loader from "../../components/ui/Loader";
 
 const Register = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -16,14 +17,26 @@ const Register = () => {
     useState(false);
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const {
     register,
     handleSubmit,
+    watch,
+    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(registrationSchema),
   });
+
+  const userData = {
+    first_name:  watch('first_name'),
+    last_name:  watch('last_name'),
+    username:  watch('username'),
+    email:  watch('email'),
+    password:  watch('password'),
+    confirm_password:  watch('confirm_password'),
+  }
 
   const onSubmit = async (data, e) => {
     console.log(data);
@@ -32,6 +45,17 @@ const Register = () => {
       setLoading(true);
       dispatch(addUser(data));
       setLoading(false);
+      reset({
+        first_name: "",
+        last_name: "",
+        username: "",
+        email: "",
+        password: "",
+        confirm_password: "",
+      });
+      window.setTimeout(() => {
+        navigate('/');
+      }, 1500);
       console.log("user added successfully. ");
     } catch (error) {
       setLoading(false);
@@ -135,7 +159,7 @@ const Register = () => {
             data in accordance with the <b>PRIVACY POLICY.</b>
           </div>
           <button className="registerButton" type="submit" disabled={loading}>
-            Register
+            { loading ? <Loader/> :"Register"}
           </button>
         </form>
         <div className="register_links">

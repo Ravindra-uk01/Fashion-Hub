@@ -4,11 +4,11 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { resetPasswordSchema } from "../schemas/authSchema";
-import newRequest from "../utils/newRequest";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { resetPasswordSchema } from "../../schemas/authSchema";
+import newRequest from "../../utils/newRequest";
 
 const ResetPassword = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);

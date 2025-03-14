@@ -3,9 +3,9 @@ import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
-import newRequest from "../utils/newRequest";
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
-import "../styles/forgot_password.css";
+import "./forgot_password.css";
+import newRequest from "../../utils/newRequest";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
