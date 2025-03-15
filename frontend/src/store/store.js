@@ -12,7 +12,6 @@ import {
     REGISTER,
   } from 'redux-persist'
   import storage from 'redux-persist/lib/storage'
-  import { PersistGate } from 'redux-persist/integration/react'
 
   
   const persistConfig = {
@@ -22,7 +21,6 @@ import {
   }
 
 const rootReducer = combineReducers({ user: userReducer, cart: cartReducer });
-
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({

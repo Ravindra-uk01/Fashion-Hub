@@ -19,12 +19,13 @@ import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import ResetPassword from "./pages/auth/ResetPassword";
+import { useSelector } from "react-redux";
 
 function App() {
-  const loggedIn = false;
-  const isAdmin = false;
-  // const isValid = loggedIn && isAdmin;
-  const isValid = true;
+
+   const {user, loggedIn, isAdmin} = useSelector((state)=> state.user);
+  const isValid = loggedIn && isAdmin;
+  // const isValid = true;
 
   const PrivateRoute = ({ children }) => {
     return isValid ? children : <Navigate replace to="/login" />;
@@ -39,6 +40,11 @@ function App() {
       </div>
     </div>
   );
+
+  console.log('user is ', user);
+  console.log('is valid is ', isValid);
+  console.log('this is logged in ', loggedIn);
+  console.log('this is admin ', isAdmin);
 
   return (
     <>

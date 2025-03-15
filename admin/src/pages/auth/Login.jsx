@@ -42,9 +42,11 @@ const Login = () => {
   const onSubmit = async (data) => {
     try {
       setLoading(true);
+      console.log('data is ', data);
       const res = await newRequest.post(`auth/login`, data);
       const { status, message, user, token } = res.data;
 
+      console.log("response is ", res.data);
       if (status === "success") {
         toast.success(message, { ...toastData });
         dispatch(setProfile({ user }));
