@@ -36,6 +36,16 @@
     width: 50%;
 }
 
+.widgetSmUsername{
+    font-weight: 500;
+}
+
+.widgetSmUserTitle{
+    font-weight: 400;
+    font-size: 14px;
+    color: grey;
+}
+
 .widgetSmButton{
     border: none;
     border-radius: 10px;

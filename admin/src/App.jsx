@@ -41,10 +41,6 @@ function App() {
     </div>
   );
 
-  console.log('user is ', user);
-  console.log('is valid is ', isValid);
-  console.log('this is logged in ', loggedIn);
-  console.log('this is admin ', isAdmin);
 
   return (
     <>

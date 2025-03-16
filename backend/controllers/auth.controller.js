@@ -60,7 +60,7 @@ export const login = catchAsync(async(req, res, next)=>{
 
 export const signup = catchAsync(async(req, res, next)=>{
 
-    const {email , password , confirm_password, first_name, last_name} = req.body;
+    const {email , password , confirm_password, username, first_name, last_name} = req.body;
 
     const exists = await User.findOne({email});
 
@@ -74,7 +74,8 @@ export const signup = catchAsync(async(req, res, next)=>{
         confirm_password,
         passwordChangedAt: new Date(),
         first_name,
-        last_name
+        last_name,
+        username
     });
 
     newUser.password = undefined;

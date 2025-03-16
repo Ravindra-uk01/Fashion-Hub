@@ -9,7 +9,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { loginSchema } from "../../schemas/authSchema";
 import newRequest from "../../utils/newRequest";
-import { setProfile } from "../../reducers/userReducer";
+import { setProfile } from "../../reducers/userReducer.js";
 import Loader from "../../components/ui/Loader";
 // import { setProfile } from "../reducers/userReducer";
 
@@ -58,6 +58,7 @@ const Login = () => {
       }
     } catch (err) {
       const { status, message } = err.response.data;
+      console.log('error is ', err.response.data);
       if (status === "warning") {
         toast.warn(message, {
           ...toastData,

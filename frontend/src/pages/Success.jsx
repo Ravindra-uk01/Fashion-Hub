@@ -39,11 +39,6 @@ const Success = () => {
      stripeData && cart.total && createOrder();
   }, [user, stripeData, cart]);
 
-  console.log("cart is ", cart);
-  console.log("stripeData state is ", stripeData);
-  console.log("user is ", user);
-  console.log("orderId is ", orderId);
-  console.log('locaation state is ', location.state)
 
   return (
     <div

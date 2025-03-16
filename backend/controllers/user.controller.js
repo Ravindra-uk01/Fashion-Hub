@@ -27,11 +27,15 @@ export const createUser = catchAsync(async (req, res, next) => {
 
 export const getAllUsers = catchAsync(async (req, res, next) => {
   const { _id, role } = req.user;
+  const query = req.query.new;
 
   if (!validType(role, ["admin"])) {
     return next(new AppError(401, "Unauthorized User"));
   }
-  const users = await User.find({});
+  // const users = await User.find({});
+  const users = query
+  ? await User.find().sort({ _id: -1 }).limit(5)
+  : await User.find();
 
   return res.status(200).json({
     status: "success",

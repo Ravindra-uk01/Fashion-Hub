@@ -1,7 +1,30 @@
+import { useEffect, useState } from "react";
 import "./featuredInfo.css"
 import { ArrowDownward, ArrowUpward } from "@mui/icons-material";
+import newRequest from "../../utils/newRequest";
 
 const FeaturedInfo = () => {
+
+    const [income, setIncome] = useState(0);
+    const [percent, setPercent] = useState(0);
+
+    useEffect(() => {
+        const getIncome = async () => {
+            try {
+                const res = await newRequest.get("/orders/income");
+
+                console.log('res is ', res);
+                setIncome(res.data.totalIncome);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        getIncome();
+    }, []);
+
+    console.log('income is ', income);
+    console.log('percent is ', percent);
+
   return (
     <div className="featured"> 
         <div className='featuredItem' >

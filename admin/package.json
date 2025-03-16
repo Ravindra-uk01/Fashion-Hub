@@ -27,6 +27,7 @@
     "react-toastify": "^11.0.5",
     "recharts": "^2.15.1",
     "redux-persist": "^6.0.0",
+    "timeago.js": "^4.0.2",
     "yup": "^1.6.1"
   },
   "devDependencies": {

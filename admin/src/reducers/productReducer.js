@@ -15,9 +15,8 @@ const toastData = {
 
 
 const initialState = {
-    loggedIn: false,
-    isAdmin: false,
-    user: {},
+    loading: false,
+    products: [],
 }
 
 const productSlice = new createSlice({

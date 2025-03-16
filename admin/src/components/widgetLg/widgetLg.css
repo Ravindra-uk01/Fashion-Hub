@@ -10,26 +10,19 @@
   font-weight: 600;
 }
 
-.widgetLgTable {
+.widgetLgTable{
   width: 100%;
+  border-spacing: 20px;
 }
 
-.widgetLgTr {
-  display: flex;
-  justify-content: space-between;
-  margin: 20px 0;
-}
-
-.widgetLgTh {
-  font-weight: 600;
+.widgetLgTh{
   text-align: left;
-  font-size: 1.2rem;
 }
 
-.widgetLgUser {
+.widgetLgUser{
   display: flex;
   align-items: center;
-  gap: 6px;
+  font-weight: 600;
 }
 
 .widgetLgImg {
@@ -37,48 +30,34 @@
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
+  margin-right: 10px;
 }
 
-.widgetLgName {
-  font-weight: 600;
-}
-
-.widgetLgDate {
+.widgetLgDate,.widgetLgAmount{
   font-weight: 300;
-  color: gray;
-}
-
-.widgetLgAmount {
-  font-weight: 300;
-}
-
-.widgetLgStatus {
-  display: flex;
-  align-items: center;
-}
-
-.widgetLgStatus span {
-  font-weight: 600;
-  text-transform: capitalize;
 }
 
 .widgetLgButton {
-    padding: 5px 7px;
-    border: none;
-    border-radius: 10px;
-  }
+  padding: 5px 7px;
+  border: none;
+  border-radius: 10px;
+}
   
-  .widgetLgButton.Approved{
+  .widgetLgButton.delivered{
       background-color: #e5faf2;
       color: #3bb077;
   }
-  .widgetLgButton.Declined{
+  .widgetLgButton.cancelled{
       background-color: #fff0f1;
       color: #d95087;
   
   }
-  .widgetLgButton.Pending{
+  .widgetLgButton.processing{
       background-color: #ebf1fe;
       color: #2a7ade;
+  }
+  .widgetLgButton.shipped{
+      background-color: #ebf1fe;
+      color: #dcf029;
   }
 

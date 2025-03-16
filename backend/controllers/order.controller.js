@@ -15,10 +15,17 @@ export const createOrder = catchAsync(async (req, res, next) => {
 });
 
 export const getAllOrders = catchAsync(async (req, res, next) => {
+
+  const { _id, role } = req.user;
+  const query = req.query.new;
   if (!validType(role, ["admin"])) {
     return next(new AppError(401, "Unauthorized User"));
   }
-  const allOrders = await Order.find();
+  // const allOrders = await Order.find();
+  const allOrders = query
+    ? await Order.find().sort({ _id: -1 }).limit(5)
+    : await Order.find();
+  
 
   return res.status(200).json({
     status: "success",
