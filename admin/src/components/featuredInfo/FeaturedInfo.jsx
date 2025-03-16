@@ -13,8 +13,9 @@ const FeaturedInfo = () => {
             try {
                 const res = await newRequest.get("/orders/income");
 
-                console.log('res is ', res);
-                setIncome(res.data.totalIncome);
+                const {income} = res.data;
+                setIncome(income[1].total);
+                setPercent((income[1].total*100)/income[0].total - 100);
             } catch (err) {
                 console.log(err);
             }
@@ -22,17 +23,17 @@ const FeaturedInfo = () => {
         getIncome();
     }, []);
 
-    console.log('income is ', income);
-    console.log('percent is ', percent);
-
   return (
     <div className="featured"> 
         <div className='featuredItem' >
             <span className='featuredTitle'>Revenue</span>
             <div className='featuredMoneyContainer'>
-                <span className='featuredMoney'>₹ 2,415,000</span>
-                <span className='featuredMoneyRate'>-11.4 
-                <ArrowDownward  className="featuredIcon negative"/>  
+                <span className='featuredMoney'>₹ {income}</span>
+                <span className='featuredMoneyRate'>{Math.round(percent)}%
+
+                {
+                    percent > 0 ? <ArrowUpward  className="featuredIcon positive"/> : <ArrowDownward  className="featuredIcon negative"/>
+                }
                      </span>
             </div>
             <span className='featuredSub'>Compared to last month</span>
@@ -40,7 +41,7 @@ const FeaturedInfo = () => {
         <div className='featuredItem' >
             <span className='featuredTitle'>Sales</span>
             <div className='featuredMoneyContainer'>
-                <span className='featuredMoney'>₹ 4,345,000</span>
+                <span className='featuredMoney'>₹ 4,345</span>
                 <span className='featuredMoneyRate'>-1.4 
                 <ArrowDownward  className="featuredIcon negative"/>  
                      </span>
@@ -50,7 +51,7 @@ const FeaturedInfo = () => {
         <div className='featuredItem' >
             <span className='featuredTitle'>Cost</span>
             <div className='featuredMoneyContainer'>
-                <span className='featuredMoney'>₹ 2,115,000</span>
+                <span className='featuredMoney'>₹ 2,115</span>
                 <span className='featuredMoneyRate'>+2.4 
                 <ArrowUpward  className="featuredIcon positive"/>  
                      </span>

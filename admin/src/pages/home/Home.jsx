@@ -28,22 +28,28 @@ const Home = () => {
     []
   );
 
+  
   useEffect(() => {
-    const getUserStats = async () => {
+    const getStats = async () => {
       try {
         const res = await newRequest.get("/users/stats");
-        const formattedStats = res?.data?.userStats.map((item) => ({
-          name: MONTHS[item._id - 1], 
-          "Active User": item.total,
-        }));
-        setUserStats(formattedStats);
+
+        if (res && res.data && res.data.userStats) {
+          const stats = res.data.userStats.map((item) => ({
+            name: MONTHS[item._id - 1],
+            "Active User": item.total,
+          }));
+          setUserStats(stats);
+        } else {
+          console.log("No data received.");
+        }
       } catch (err) {
-        console.log(err);
+        console.error("Error fetching stats:", err);
       }
     };
-    getUserStats();
+    getStats();
   }, [MONTHS]);
-
+  
   return (
     <div className="home">
       <FeaturedInfo />

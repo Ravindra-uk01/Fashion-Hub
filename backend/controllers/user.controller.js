@@ -161,7 +161,9 @@ export const getUserStats = catchAsync(async(req, res, next) => {
         total : {$sum : 1}
       }
     },
-   
+    {
+      $sort: { _id: 1 }, 
+    }
   ])
 
   return res.status(200).json({

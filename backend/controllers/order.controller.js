@@ -120,6 +120,9 @@ export const getMonthlyIncome = catchAsync(async (req, res, next) => {
             _id: "$month",
             total: {$sum : "$sales"}
         }
+    },
+    {
+      $sort: { _id: 1 }, 
     }
   ]);
 
