@@ -1,10 +1,70 @@
 import { Publish } from '@mui/icons-material'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { productData } from '../../dummyData'
 import Chart from '../../components/chart/Chart'
 import './product.css'
+import { useEffect, useMemo, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { getProductById } from '../../reducers/productReducer'
 
 const Product = () => {
+
+    const {product} = useSelector(state => state.product);
+    const {productId} = useParams();
+    const dispatch = useDispatch();
+     const [prodStats, setProdStats] = useState([]);
+    
+      const MONTHS = useMemo(
+        () => [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec",
+        ],
+        []
+      );
+    
+      
+      useEffect(() => {
+        const getStats = async () => {
+          try {
+            const res = await newRequest.get("/users/stats");
+    
+            if (res && res.data && res.data.userStats) {
+              const stats = res.data.userStats.map((item) => ({
+                name: MONTHS[item._id - 1],
+                "Active User": item.total,
+              }));
+              setUserStats(stats);
+            } else {
+              console.log("No data received.");
+            }
+          } catch (err) {
+            console.error("Error fetching stats:", err);
+          }
+        };
+        getStats();
+      }, [MONTHS]);
+
+    useEffect(()=> {
+        dispatch(getProductById(productId));
+    },[dispatch, productId]);
+
+    useEffect(()=> {
+        dispatch(getProductById(productId));    
+    },[dispatch, productId]);
+
+    console.log('product Id is ', productId);
+    console.log('product is ', product);
+
   return (
     <div className="product">
       <div className="productTitleContainer">
@@ -19,25 +79,22 @@ const Product = () => {
           </div>
           <div className="productTopRight">
               <div className="productInfoTop">
-                  <img src="https://images.pexels.com/photos/7156886/pexels-photo-7156886.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="" className="productInfoImg" />
-                  <span className="productName">Apple Airpods</span>
+                  <img src={product.image} alt="" className="productInfoImg" />
+                  <span className="productName">{product.name}</span>
               </div>
               <div className="productInfoBottom">
                   <div className="productInfoItem">
-                      <span className="productInfoKey">id:</span>
-                      <span className="productInfoValue">123</span>
+                      <span className="productInfoKey">Id:</span>
+                      <span className="productInfoValue">{product._id}</span>
                   </div>
                   <div className="productInfoItem">
-                      <span className="productInfoKey">sales:</span>
-                      <span className="productInfoValue">5123</span>
+                      <span className="productInfoKey">Price:</span>
+                      <span className="productInfoValue">₹ {product.price}</span>
                   </div>
+                 
                   <div className="productInfoItem">
-                      <span className="productInfoKey">active:</span>
-                      <span className="productInfoValue">yes</span>
-                  </div>
-                  <div className="productInfoItem">
-                      <span className="productInfoKey">in stock:</span>
-                      <span className="productInfoValue">no</span>
+                      <span className="productInfoKey">In stock:</span>
+                      <span className="productInfoValue">{product.stock}</span>
                   </div>
               </div>
           </div>
@@ -47,6 +104,10 @@ const Product = () => {
               <div className="productFormLeft">
                   <label>Product Name</label>
                   <input type="text" placeholder="Apple AirPod" />
+                  <label>Product Description</label>
+                  <input type="text" placeholder="Apple AirPod description" />
+                  <label>Price</label>
+                  <input type="number" placeholder="eg:- 1000" />
                   <label>In Stock</label>
                   <select name="inStock" id="idStock">
                       <option value="yes">Yes</option>

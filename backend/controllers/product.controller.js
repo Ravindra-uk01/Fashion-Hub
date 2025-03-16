@@ -83,7 +83,8 @@ export const deleteProduct = catchAsync(async (req, res, next) => {
     return next(new AppError(401, "Unauthorized User"));
   }
 
-  const product = await Product.findByIdAndDelete(id);
+  const product = await Product.findById(id);
+  // const product = await Product.findByIdAndDelete(id);
 
   if (!product) {
     return next(new AppError(400, "No Product found with this Id."));
