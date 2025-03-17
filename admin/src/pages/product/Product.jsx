@@ -62,8 +62,8 @@ const Product = () => {
         dispatch(getProductById(productId));    
     },[dispatch, productId]);
 
-    console.log('product Id is ', productId);
-    console.log('product is ', product);
+    // console.log('product Id is ', productId);
+    // console.log('product is ', product);
 
   return (
     <div className="product">
