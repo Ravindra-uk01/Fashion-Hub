@@ -49,7 +49,7 @@ export const userData = [
     },
   ];
 
-  export const productData = [
+  export const productDataChart = [
     {
       name: "Jan",
       "Sales": 4000,

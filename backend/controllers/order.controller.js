@@ -94,6 +94,7 @@ export const deleteOrder = catchAsync(async (req, res, next) => {
 
 export const getMonthlyIncome = catchAsync(async (req, res, next) => {
   const { _id, role } = req.user;
+  const productId = req.query.pid;
 
   if (!validType(role, ["admin"])) {
     return next(new AppError(401, "Unauthorized User"));
@@ -103,11 +104,16 @@ export const getMonthlyIncome = catchAsync(async (req, res, next) => {
   const lastMonth = new Date(currentDate.setMonth(currentDate.getMonth() - 1));
   const previousMonth = new Date(currentDate.setMonth(lastMonth.getMonth() - 1));
 
+  console.log("productId is ", productId);
+
   const income = await Order.aggregate([
     {
-        $match: {
-            createdAt: {$gte : previousMonth},
-        }  
+      $match: {
+        createdAt: { $gte: previousMonth },
+        ...(productId && {
+          products: { $elemMatch: { productId } },
+        }),
+      },
     },
     {
         $project: {
@@ -125,6 +131,8 @@ export const getMonthlyIncome = catchAsync(async (req, res, next) => {
       $sort: { _id: 1 }, 
     }
   ]);
+
+  console.log('income is ', income);
 
     return res.status(200).json({
         status: "success",
