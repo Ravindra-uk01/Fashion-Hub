@@ -71,6 +71,8 @@ const ResetPassword = () => {
     }
   };
 
+  console.log('hwllo lkd')
+
   return (
     <div className="fg_password-mainDiv">
       <ToastContainer />
