@@ -75,7 +75,7 @@ const ProductList = () => {
     dispatch(getProducts());
   }, [dispatch]);
 
-  // console.log("products is ", products);
+  console.log("products is ", products);
 
   return (
     <>
