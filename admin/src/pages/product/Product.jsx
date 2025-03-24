@@ -99,7 +99,7 @@ const Product = () => {
 
   // console.log('product Id is ', productId);
   // console.log('product is ', product);
-  // console.log("productData is ", productData);
+  console.log("productData is ", productData);
 
   return (
     <div className="product">
