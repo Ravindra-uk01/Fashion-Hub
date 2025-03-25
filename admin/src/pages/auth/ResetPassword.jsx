@@ -73,6 +73,7 @@ const ResetPassword = () => {
 
   // console.log('hwllo lkd')
   // console.log('hiii');
+  console.log("hello this ");
 
   return (
     <div className="fg_password-mainDiv">

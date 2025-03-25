@@ -3,7 +3,7 @@ import "./newProduct.css"
 const NewProduct = () => {
 
   // console.log('new product is ');
-
+  console.log('new product is ');
   return (
     <div className="newProduct">
       <h1 className="addProductTitle">New Product</h1>
